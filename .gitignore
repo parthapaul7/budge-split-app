@@ -1,0 +1,11 @@
+./react-budget-app/node_modules
+*/node_modules
+*./node_modules
+*node_modules/*
+react-budget-app/node_modules
+/react-budget-app/node_modules
+
+./django-backend/.idea
+./django-backend/venv
+*/migrations
+*/__picache__
