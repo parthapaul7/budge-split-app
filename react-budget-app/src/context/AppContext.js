@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-// 5. The reduceer - this is used to update the state, based on the action
+// 5. The reduceer - update the state, based on the action
 export const AppReducer = (state, action) => {
 	switch (action.type) {
 		case 'ADD_EXPENSE':
@@ -21,6 +21,11 @@ export const AppReducer = (state, action) => {
 				...state,
 				budget: action.payload,
 			};
+		case 'SET_LOGGED_IN':
+			return {
+				...state,
+				isLoggedIn: action.payload,
+			};
 
 		default:
 			return state;
@@ -37,6 +42,7 @@ const initialState = {
 		{ id: uuidv4(), name: 'Fuel', cost: 40 },
 		{ id: uuidv4(), name: 'Child Care', cost: 500 },
 	],
+	isLoggedIn: "",
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state

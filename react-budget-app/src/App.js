@@ -1,46 +1,22 @@
-import React from 'react';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { AppProvider } from './context/AppContext';
-import Budget from './components/Budget';
-import ExpenseTotal from './components/ExpenseTotal';
-import ExpenseList from './components/ExpenseList';
-import AddExpenseForm from './components/AddExpenseForm';
-import RemainingBudget from './components/Remaining';
+import Budget from "./pages/Budget"
+import Login from "./pages/Login"
+
 
 const App = () => {
-	return (
-		<AppProvider>
-			<div className='container'>
-				<h1 className='mt-3'>My Budget Planner</h1>
-				<div className='row mt-3'>
-					<div className='col-sm'>
-						<Budget />
-					</div>
-					<div className='col-sm'>
-						<RemainingBudget />
-					</div>
-					<div className='col-sm'>
-						<ExpenseTotal />
-					</div>
-				</div>
-				<div className='row '>
-					<div className='col-5'>
-				<h3 className='mt-3'>Expenses</h3>
-						<AddExpenseForm />
-					</div>
-					<div className='col-7'>
-				<h3 className='mt-3'>Add Expense</h3>
-						<ExpenseList />
-					</div>
-				</div>
-				<div className='row mt-3'>
-					<div className='col-sm'>
-					</div>
-				</div>
-			</div>
-		</AppProvider>
-	);
-};
+  return (
+	<AppProvider>
+		<Router>
+        <Routes>
+          <Route path="/" element={localStorage.getItem("access")?<Budget/>:<Navigate to="/login"/>} />
+		      <Route path="/login" element={<Login/>}/>
+        </Routes>
+      </Router>
+	</AppProvider>
+  )
+}
 
-export default App;
+export default App

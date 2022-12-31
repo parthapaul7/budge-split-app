@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-otm1!oaw!sv05w+oa6tah!ho1=myxv#3$4+(mir19nfzwa9j3a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS=['*']
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'transactions',
+    'corsheaders',
     'account',
     'rest_framework',
     'rest_framework.authtoken',
@@ -68,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'src.urls'

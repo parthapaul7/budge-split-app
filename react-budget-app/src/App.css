@@ -1,0 +1,16 @@
+.loginFormOuter{
+    width: 450px;
+    height: fit-content;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 5px;
+
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+}
+
+.center{
+    width: fit-content;
+    display: block;
+    margin: 0 auto;
+}
