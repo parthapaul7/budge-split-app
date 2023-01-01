@@ -9,11 +9,22 @@ from .serializers import TransactionSerializer,HasSerializer
 
 # fucntion to splite the amount privice none/null if not present 
 def split_amount(total, n, *amounts):
+    # convert everything to number
+    total = float(total)
+    converted_amounts = []
+
+    for i in range(len(amounts)):
+        if amounts[i] is not None:
+            converted_amounts.append(float(amounts[i]))
+        else:
+            converted_amounts.append(None)
+
+    print(converted_amounts)
     split_list = []
     i=0
     it=0
     remaining = total
-    for amount in amounts:
+    for amount in converted_amounts:
         if(amount is not None):
             split_list.append(amount)
             remaining -= amount
@@ -55,21 +66,24 @@ class TransactionViewSet(ModelViewSet):
 
     # create method override
     def create(self, request, *args, **kwargs):
+
+        if len(request.data['usernames']) is 0:
+            return Response({"status":"fail","message":"no users selected"})
         trans = Transaction(name=request.data['name'], amount=request.data['amount'], category=request.data['category'])
         n = len(request.data['usernames'])
         args = request.data['splits']
         print(n,args)
-        splits = split_amount(request.data['amount'],n+1,*args)
+        splits = split_amount(request.data['amount'],len(args),*args)
         trans.save()
 
         print(splits,"the splitted amount")
         primaryKey = str(request.user.id)+"@"+str(trans.id)
-        has = Has(paid=splits[0],pKey=primaryKey,user_id=User.objects.get(username=request.user), transaction_id=trans)
-        has.save()
+        # has = Has(paid=splits[0],pKey=primaryKey,user_id=User.objects.get(username=request.user), transaction_id=trans)
+        # has.save()
 
-        print(has)
+        # print(has)
 
-        it=1
+        it=0
         for users in request.data['usernames']:
             user_id = User.objects.get(username=users)
             # generate unique has primary key
