@@ -14,4 +14,4 @@ Prerequisites: Python3, virutalenv
 7. Create a superuser (python manage.py createsuperuser) <br />
    Fill in all the details on the terminal to create the superuser
 8. Run the backend server (python manage.py runserver)
-9. Visit the server link (http://localhost:8000/)
+9. Visit the server link (http://137.184.145.102:8000/)

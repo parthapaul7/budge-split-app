@@ -20,10 +20,17 @@ const LoginForm =({getLogin})=> {
 
         const data = await getLogin(form.username, form.password)
         console.log(data)
-        if(!data?.access) return alert('Invalid Credentials')
+
+        if(!data.access) {
+
+          return alert('Invalid Credentials')
+        }
+        
+        window.location.href = '/'
+
         localStorage.setItem('access', data.access)
         dispatch({type: 'SET_LOGGED_IN', payload: data.access})
-        navigate('/')
+
 
     }
 

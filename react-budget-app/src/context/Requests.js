@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getLogin = async (username, password) => {
   try {
-    const response = await axios.post("http://localhost:8000/api/token/", {
+    const response = await axios.post("http://137.184.145.102:8000/api/token/", {
       username,
       password,
     });
@@ -14,7 +14,7 @@ export const getLogin = async (username, password) => {
 
 export const getUsers = async () => {
   try {
-    const response = await axios.get("http://localhost:8000/user/", {
+    const response = await axios.get("http://137.184.145.102:8000/user/", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("access"),
       },
@@ -30,7 +30,7 @@ export const getUsers = async () => {
 export const postTransaction = async (data) => {
   try {
     const response = await axios.post(
-      "http://localhost:8000/transaction/",
+      "http://137.184.145.102:8000/transaction/",
       data,
       {
         headers: {
@@ -47,7 +47,7 @@ export const postTransaction = async (data) => {
 
 export const getTransactions = async () => {
     try {
-        const response = await axios.get("http://localhost:8000/transaction/", {
+        const response = await axios.get("http://137.184.145.102:8000/transaction/", {
         headers: {
             Authorization: "Bearer " + localStorage.getItem("access"),
         },
@@ -61,7 +61,7 @@ export const getTransactions = async () => {
 export const deleteTransaction = async (id) => {
     try {
         const response = await axios.delete(
-        `http://localhost:8000/transaction/${id}/`,
+        `http://137.184.145.102:8000/transaction/${id}/`,
         {
             headers: {
               "Authorization": "Bearer " + localStorage.getItem("access"),
