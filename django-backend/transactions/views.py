@@ -67,7 +67,7 @@ class TransactionViewSet(ModelViewSet):
     # create method override
     def create(self, request, *args, **kwargs):
 
-        if len(request.data['usernames']) is 0:
+        if len(request.data['usernames']) == 0:
             return Response({"status":"fail","message":"no users selected"})
         trans = Transaction(name=request.data['name'], amount=request.data['amount'], category=request.data['category'])
         n = len(request.data['usernames'])
