@@ -68,6 +68,8 @@ const AddExpenseForm = (props) => {
         type: "ADD_EXPENSE",
         payload: await getTransactions(),
       })
+      
+      window.location.reload();
 
     } catch (error) {
       console.log(error);
